@@ -7,8 +7,8 @@ import com.parse.ParseInstallation;
 import com.parse.ParseUser;
 
 public class TestApp extends Application {
-    private final String APPLICATION_ID = "TQodYeroaXQOhBVHPaPy0C5WflrAJwlwTBD1wOZK";
-    private final String SECRET_KEY = "Dst27A2baIAE0ISwy6u0yXvEm2z8oxOAFaHTDJBt";
+    private final String APPLICATION_ID = "$PARSE_APP_ID";
+    private final String SECRET_KEY = "$PARSE_CLIENT_KEY\"";
 
 
     @Override
