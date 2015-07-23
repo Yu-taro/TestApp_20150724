@@ -1,11 +1,11 @@
 ###概要
 ---
 これはアライドアーキテクツエンジニアブログ  
-      url： 
+url： 
 に掲載したAndroidアプリのソースコードです。 
-app/src/main/java/com/exampletestapp/Testapp.javaの
+app/src/main/java/com/exampletestapp/Testapp.java
 
-```
+```Testapp.java
     private final String APPLICATION_ID = "$PARSE_APP_ID";
     private final String SECRET_KEY = "$PARSE_CLIENT_KEY\"";
 ```
