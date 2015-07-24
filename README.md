@@ -14,7 +14,7 @@ app/src/main/java/com/exampletestapp/Testapp.java
 
 ParseCloudCode用のmain.js
 
-``` main.js javascript
+```
 Parse.Cloud.afterSave("Message", function(request){
 	Parse.Cloud.useMasterKey(); //特権ユーザーにチェンジ
 	
