@@ -3,16 +3,17 @@
 これはアライドアーキテクツエンジニアブログ  
 url： 
 に掲載したAndroidアプリのソースコードです。 
-app/src/main/java/com/exampletestapp/Testapp.java
 
-```Testapp.java
+####app/src/main/java/com/example/testapp/Testapp.java
+
+```
     private final String APPLICATION_ID = "$PARSE_APP_ID";
     private final String SECRET_KEY = "$PARSE_CLIENT_KEY\"";
 ```
 
 にお使いのParse.comアプリケーションのキーを入れてご使用ください。  
 
-ParseCloudCode用のmain.js
+####ParseCloudCode用のmain.js
 
 ```
 Parse.Cloud.afterSave("Message", function(request){
