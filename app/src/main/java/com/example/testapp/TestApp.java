@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.parse.Parse;
 import com.parse.ParseInstallation;
-import com.parse.ParseUser;
 
 public class TestApp extends Application {
     private final String APPLICATION_ID = "$PARSE_APP_ID";
