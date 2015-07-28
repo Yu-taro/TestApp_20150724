@@ -4,8 +4,6 @@ package com.example.testapp;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Map;
-
 
 public class Message {
     private String username;
@@ -25,12 +23,6 @@ public class Message {
             e.printStackTrace();
         }
     }
-
-//    public Message(Map<String, String > message) {
-//        this.username = message.containsKey("username") ? message.get("username") : null;
-//        this.body = message.containsKey("body") ? message.get("body") : null;
-//    }
-
 
     public String getUsername() {
         return this.username;
