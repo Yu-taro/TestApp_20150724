@@ -8,7 +8,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -40,16 +42,9 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         // ListViewに表示するデータを作成する
-        List<JSONObject> list = new ArrayList<JSONObject>();
-            JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("username","username");
-            jsonObject.put("body","body");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        list.add(jsonObject);
-
+        List<Message> list = new ArrayList<>();
+        Message message = new Message("username","body");
+        list.add(message);
 
         ListView listView = (ListView) findViewById(R.id.ListView);
         customListItemAdapter = new CustomListItemAdapter(this, list);
@@ -62,9 +57,10 @@ public class MainActivity extends ActionBarActivity {
     }
 
     //Receiverから呼ばれ、メッセージをViewに追加する
-    public void addMessage(JSONObject message) {
+    public void addMessage(Message message) {
         getMessageAdapter().add(message);
         getMessageAdapter().notifyDataSetChanged();
+
     }
 
 //

@@ -7,47 +7,43 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.List;
 
-public class CustomListItemAdapter extends ArrayAdapter<JSONObject> {
+public class CustomListItemAdapter extends ArrayAdapter<Message> {
 
     private LayoutInflater mLayoutInflater;
 
-    public CustomListItemAdapter(Context context, List<JSONObject> objects) {
+    static class ViewHolder {
+        TextView usernameTextView;
+        TextView bodyTextView;
+    }
+
+    public CustomListItemAdapter(Context context, List<Message> objects) {
         super(context, 0, objects);
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder;
 
-        View view = null;
-
-        // ListViewに表示する分のレイアウトが生成されていない場合レイアウトを作成する
         if (convertView == null) {
-            // レイアウトファイルからViewを生成する
-            view = mLayoutInflater.inflate(R.layout.custom_list_item, parent, false);
+            convertView = mLayoutInflater.inflate(R.layout.custom_list_item, parent, false);
+            holder = new ViewHolder();
+            holder.usernameTextView = (TextView) convertView.findViewById(R.id.username);
+            holder.bodyTextView = (TextView) convertView.findViewById(R.id.body);
+            convertView.setTag(holder);
         } else {
-            // レイアウトが存在する場合は再利用する
-            view = convertView;
+            holder = (ViewHolder) convertView.getTag();
         }
 
         // リストアイテムに対応するデータを取得する
-        JSONObject item = getItem(position);
-        try {
-            // 各Viewに表示する情報を設定
-            TextView username = (TextView) view.findViewById(R.id.username);
-            username.setText(item.getString("username"));
-            TextView body = (TextView) view.findViewById(R.id.body);
-            body.setText(item.getString("body"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        Message item = getItem(position);
+        // 各Viewに表示する情報を設定
+        holder.usernameTextView.setText(item.getUsername());
+        holder.bodyTextView.setText(item.getBody());
 
-        return view;
+        return convertView;
     }
 
 }

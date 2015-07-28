@@ -11,6 +11,9 @@ import com.parse.ParsePushBroadcastReceiver;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CustomReceiver extends ParsePushBroadcastReceiver {
     MainActivity mainActivity = MainActivity.instance();
 
@@ -19,7 +22,9 @@ public class CustomReceiver extends ParsePushBroadcastReceiver {
     protected void onPushReceive(Context context, Intent intent) {
         Log.d("CostomReceiver", "onPushReceive");
 
-        if(mainActivity != null) {
+        if (mainActivity != null) {
+            Map<String, Object> map = new HashMap<String, Object>();
+
             //jsonデータを取り出す
             try {
                 Bundle extra = intent.getExtras();
@@ -27,16 +32,13 @@ public class CustomReceiver extends ParsePushBroadcastReceiver {
                 JSONObject jsonObject = new JSONObject(data);
 
                 JSONObject sendMessage = jsonObject.getJSONObject("sendMessage");
-
-                //MainActivity.java内のaddMessage()を呼び出す。
-
-                mainActivity.addMessage(sendMessage);
+                map.put("sendMessage", new Message(sendMessage));
+                Message receiveMessage = (Message) map.get("sendMessage");
+                mainActivity.addMessage(receiveMessage);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-        ;
-
     }
 
 }
