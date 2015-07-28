@@ -4,36 +4,28 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.ListView;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import de.greenrobot.event.EventBus;
 
 
 public class MainActivity extends ActionBarActivity {
 
     private CustomListItemAdapter customListItemAdapter;
-    private static MainActivity instance;
-
-    public static MainActivity instance() {
-        return instance;
-    }
 
     //Activityの始まりにinstanceを入れる
     @Override
     protected void onResume() {
         super.onResume();
-        this.instance = this;
+        EventBus.getDefault().register(this);
     }
 
     //Activityの終わりにinstanceをnullにする
     @Override
     protected void onStop() {
+        EventBus.getDefault().unregister(this);
         super.onStop();
-        this.instance = null;
     }
 
     @Override
@@ -61,6 +53,10 @@ public class MainActivity extends ActionBarActivity {
         getMessageAdapter().add(message);
         getMessageAdapter().notifyDataSetChanged();
 
+    }
+
+    public void onEvent (CustomEvent customEvent){
+        addMessage(customEvent.getMessage());
     }
 
 //
