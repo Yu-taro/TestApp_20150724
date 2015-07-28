@@ -8,7 +8,7 @@ url：
 
 ```
     private final String APPLICATION_ID = "$PARSE_APP_ID";
-    private final String SECRET_KEY = "$PARSE_CLIENT_KEY\"";
+    private final String SECRET_KEY = "$PARSE_CLIENT_KEY";
 ```
 
 にお使いのParse.comアプリケーションのキーを入れてご使用ください。  
